@@ -1,0 +1,14 @@
+[
+{
+        "project": "RJ",
+        "summary": "Create issue in RJ project by Manickam",
+        "description": "Creating an issue using project key and issue type as bug using the REST API",
+        "name": "Bug"
+},
+{
+        "project": "RJ",
+        "summary": "Create story in RJ project by Manickam",
+        "description": "Creating a story using project key and issue type as Story using the REST API",
+        "name": "Story"
+}
+]

@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "cbfa6dbf-1bb7-42a3-a07f-b23e331a74e6",
+		"name": "JIRA-NewMan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create JIRA Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"var res = pm.response.json();\r",
+							"pm.globals.set(\"key\",res.key);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"project\": {\r\n            \"key\": \"{{project}}\"\r\n        },\r\n        \"summary\": \"{{summary}}\",\r\n        \"description\": \"{{description}}\",\r\n        \"issuetype\": {\r\n            \"name\": \"{{name}}\"\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{jira-hp}}/{{jApi}}/issue/",
+					"host": [
+						"{{jira-hp}}"
+					],
+					"path": [
+						"{{jApi}}",
+						"issue",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get JIRA Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{jira-hp}}/{{jApi}}/issue/{{key}}",
+					"host": [
+						"{{jira-hp}}"
+					],
+					"path": [
+						"{{jApi}}",
+						"issue",
+						"{{key}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "Fgxv4LUtUlaZ0DMNJLYc4251",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "hari.radhakrishnan@testleaf.com",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "jApi",
+			"value": "rest/api/2"
+		}
+	]
+}
